@@ -30,9 +30,12 @@ class Config:
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     if not JWT_SECRET_KEY:
         raise ValueError("No JWT_SECRET_KEY set for Flask application")
-        
+    
+    # Return CSRF in JSON response, not as separate cookies
     JWT_TOKEN_LOCATION = ['cookies']
-    JWT_COOKIE_CSRF_PROTECT = False    # Enabled for security
+    JWT_COOKIE_CSRF_PROTECT = True    # Enabled for security
+    JWT_CSRF_IN_COOKIES = False
+    
     JWT_ACCESS_COOKIE_NAME = 'access_token_cookie'
     JWT_REFRESH_COOKIE_NAME = 'refresh_token_cookie'
     
