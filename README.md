@@ -57,7 +57,6 @@ ass2/
 │   ├── vite.config.js      # Vite configuration
 │   └── .env               # Environment variables
 ├── .gitignore              # Git ignore rules
-├── DEPLOY.md              # Deployment guide
 └── README.md              # This file
 ```
 
@@ -71,7 +70,7 @@ ass2/
 
 ### **1. Clone Repository**
 ```bash
-git clone https://github.com/yourusername/wikiquiz-ai.git
+git clone https://github.com/adityaSG4/wikiquiz-ai.git
 cd wikiquiz-ai
 ```
 
