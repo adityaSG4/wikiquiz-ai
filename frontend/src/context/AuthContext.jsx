@@ -29,8 +29,7 @@ export const AuthProvider = ({ children }) => {
             setUser(userData);
         } catch (err) {
             setUser(null);
-            // Clear flag if auth failed
-            localStorage.removeItem(AUTH_FLAG_KEY);
+            localStorage.clear();
         } finally {
             setLoading(false);
         }
@@ -64,7 +63,7 @@ export const AuthProvider = ({ children }) => {
             await api.logout();
         } finally {
             setUser(null);
-            localStorage.removeItem(AUTH_FLAG_KEY);
+            localStorage.clear();
         }
     };
 
