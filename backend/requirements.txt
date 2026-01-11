@@ -1,0 +1,14 @@
+flask
+flask-sqlalchemy
+flask-cors
+psycopg2-binary
+beautifulsoup4
+requests
+python-dotenv
+langchain
+langchain-google-genai
+google-generativeai
+flask-jwt-extended
+email-validator
+validators
+flask-limiter

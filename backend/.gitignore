@@ -1,0 +1,33 @@
+# === Python / Backend ===
+
+# Virtual environment
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.pytest_cache/
+
+# Flask / instance folder
+instance/
+*.sqlite3
+*.db
+
+# Migrations cache
+migrations/__pycache__/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+logs/
+
+# Editor directories and files
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.swp
+*.swo
