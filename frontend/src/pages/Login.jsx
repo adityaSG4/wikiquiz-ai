@@ -37,7 +37,7 @@ export default function Login() {
 
                 <form onSubmit={handleSubmit}>
                     <div className="sharp-input-group">
-                        <label className="sharp-label">Email</label>
+                        <label className="sharp-label">Username</label>
                         <input
                             type="text"
                             className="sharp-input"
