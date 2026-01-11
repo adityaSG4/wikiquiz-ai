@@ -42,8 +42,9 @@ class Config:
     
     # Cookie Security
     # In production, set JWT_COOKIE_SECURE to True
-    JWT_COOKIE_SECURE = os.getenv('FLASK_ENV') == 'production'
-    JWT_COOKIE_SAMESITE = 'Lax'
+    # JWT_COOKIE_SECURE = os.getenv('FLASK_ENV') == 'production'
+    JWT_COOKIE_SECURE = True
+    JWT_COOKIE_SAMESITE = 'None'
     
     # ======================
     # AI / LLM
