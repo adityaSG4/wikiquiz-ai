@@ -10,18 +10,26 @@ const apiClient = axios.create({
     },
 });
 
+
+
 // Helper to get cookie by name
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
+// function getCookie(name) {
+//     const value = `; ${document.cookie}`;
+//     const parts = value.split(`; ${name}=`);
+//     if (parts.length === 2) return parts.pop().split(';').shift();
+// }
+
+const CSRF_ACCESS_KEY = 'csrf_access_token';
+const CSRF_REFRESH_KEY = 'csrf_refresh_token';
+
+
 
 // Request Interceptor to add CSRF Token
 apiClient.interceptors.request.use(config => {
     // Only add CSRF token for mutating requests
     if (['post', 'put', 'delete', 'patch'].includes(config.method)) {
-        const csrfToken = getCookie('csrf_access_token');
+        // const csrfToken = getCookie('csrf_access_token');
+        const csrfToken = localStorage.getItem(CSRF_ACCESS_KEY);
         if (csrfToken) {
             config.headers['X-CSRF-TOKEN'] = csrfToken;
         }
@@ -35,6 +43,9 @@ export const api = {
     // Auth
     async login(username, password) {
         const { data } = await apiClient.post('/auth/login', { username, password });
+        localStorage.setItem(CSRF_ACCESS_KEY, data.csrf_access_token);
+        localStorage.setItem(CSRF_REFRESH_KEY, data.csrf_refresh_token);
+
         return data;
     },
 

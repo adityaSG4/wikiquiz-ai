@@ -32,7 +32,7 @@ class Config:
         raise ValueError("No JWT_SECRET_KEY set for Flask application")
         
     JWT_TOKEN_LOCATION = ['cookies']
-    JWT_COOKIE_CSRF_PROTECT = True  # Enabled for security
+    JWT_COOKIE_CSRF_PROTECT = False    # Enabled for security
     JWT_ACCESS_COOKIE_NAME = 'access_token_cookie'
     JWT_REFRESH_COOKIE_NAME = 'refresh_token_cookie'
     

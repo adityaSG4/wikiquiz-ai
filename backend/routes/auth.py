@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from models import db, User
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, set_access_cookies, set_refresh_cookies, unset_jwt_cookies, get_csrf_token
 from email_validator import validate_email, EmailNotValidError
 
 auth_bp = Blueprint('auth', __name__)
@@ -69,7 +69,9 @@ def login():
 
     response = jsonify({
         "message": "Login successful", 
-        "user": {"id": user.id, "username": user.username}
+        "user": {"id": user.id, "username": user.username},
+        'csrf_access_token': get_csrf_token(access_token), 
+        'csrf_refresh_token': get_csrf_token(refresh_token)  
     })
     
     # Cookies are handled by flask-jwt-extended configuration
