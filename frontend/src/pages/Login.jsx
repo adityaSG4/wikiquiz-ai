@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { useMobile } from '../hooks/useMobile';
 
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showMobileNotice, setShowMobileNotice] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
+    const isMobile = useMobile();
+
+    useEffect(() => {
+        // Show mobile notice on mobile devices
+        if (isMobile) {
+            setShowMobileNotice(true);
+            // Auto-hide after 10 seconds
+            const timer = setTimeout(() => {
+                setShowMobileNotice(false);
+            }, 10000);
+            return () => clearTimeout(timer);
+        }
+    }, [isMobile]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,6 +44,33 @@ export default function Login() {
 
     return (
         <div className="auth-container">
+            {/* Mobile Cookie Notice */}
+            {showMobileNotice && (
+                <div className="sharp-mobile-notice">
+                    <div className="sharp-mobile-notice-content">
+                        <div className="sharp-mobile-notice-header">
+                            <span className="sharp-mobile-notice-icon">📱</span>
+                            <h3>Mobile Browser Notice</h3>
+                            <button 
+                                className="sharp-mobile-notice-close"
+                                onClick={() => setShowMobileNotice(false)}
+                            >
+                                ×
+                            </button>
+                        </div>
+                        <div className="sharp-mobile-notice-body">
+                            <p><strong>Using Mobile?</strong></p>
+                            <p>If login fails, enable cookies in Chrome:</p>
+                            <ol>
+                                <li>Settings → Site settings → Cookies</li>
+                                <li>Allow third-party cookies</li>
+                            </ol>
+                            <p><em>This notice will auto-dismiss in 10 seconds</em></p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="auth-card">
                 <h1 className="auth-title">Login</h1>
                 <p className="auth-subtitle">Enter your credentials</p>
