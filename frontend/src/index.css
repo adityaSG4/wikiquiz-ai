@@ -1271,15 +1271,17 @@ a:hover {
     border: 2px solid #e0e0e0 !important;
     border-radius: 8px !important;
     padding: 1rem 1.25rem !important;
-    margin: 0.5rem 0 !important;
-    font-size: 16px !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
+    font-size: 0.9rem !important;
+    outline: none !important;
     overflow: hidden !important;
   }
   
+  .sharp-quizzes-search .sharp-search {
+    padding-left: 3rem !important;
+  }
+  
   .sharp-search:focus {
-    border-color: var(--primary) !important;
+    border-color: #1a1a1a !important;
     border-width: 2px !important;
     box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1) !important;
   }
